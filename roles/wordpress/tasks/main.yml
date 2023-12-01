@@ -22,7 +22,7 @@
     tags:
       - copy-php-config
   
-  - name: Update WordPress config file
+  - name: Atualizando o arquivo wp-config.php
     ansible.builtin.replace:
       dest={{ website_root }}/wp-config.php
       regexp="{{ item.regex }}"
