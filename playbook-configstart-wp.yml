@@ -8,6 +8,7 @@
     roles:
       - server
       - php
+      - webserver
       - wordpress
   
   - hosts: database
