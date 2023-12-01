@@ -8,4 +8,4 @@
       - php8.2-mcrypt
       - php8.2-mysql
     tags:
-      - install-php
+      - setup-php
