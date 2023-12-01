@@ -1,0 +1,11 @@
+---
+  - hosts: database
+    tasks:
+      - name: "Instalando o MySQL"
+        apt:
+          name: "{{ item }}"
+          state: latest
+        become: yes
+        with_items:
+          - mariadb-server
+          - python3-mysqldb
