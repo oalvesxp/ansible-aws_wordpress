@@ -148,3 +148,31 @@ PLAY RECAP *********************************************************************
 mysql                      : ok=0    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 webapp                     : ok=0    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 ```
+
+7. Testando a nova estrutura para o server:
+```
+$ ansible-playbook playbook-configstart-wp.yml -i inventory.ini -uadmin -C
+
+PLAY [prod] *********************************************************************************************************************************
+
+TASK [Atualizando o apt-cache] **************************************************************************************************************
+changed: [mysql]
+changed: [webapp]
+
+TASK [Instalando o Python3] *****************************************************************************************************************
+skipping: [webapp]
+skipping: [mysql]
+
+PLAY [wordpress] ****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [webapp]
+
+TASK [server : Instalando o servidor Web] ***************************************************************************************************
+changed: [webapp] => (item=apache2)
+changed: [webapp] => (item=libapache2-mod-php8.2)
+
+PLAY RECAP **********************************************************************************************************************************
+mysql                      : ok=1    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+webapp                     : ok=3    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+```
