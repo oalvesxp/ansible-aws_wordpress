@@ -1,2 +1,9 @@
 ---
-# tasks file for mysql
+  - name: "Instalando as dependências do MySQL"
+    apt: name={{ item }} state=present
+    become: yes
+    with_items:
+      - mariadb-server
+      - python3-mysqldb
+    tags:
+      - setup-mysql
