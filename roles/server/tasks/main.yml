@@ -1,2 +1,7 @@
 ---
-# tasks file for server
+  - name: "Instalando o servidor Web"
+    apt: name={{ item }} state=present
+    become: yes
+    with_items:
+      - apache2
+      - libapache2-mod-php8.2
