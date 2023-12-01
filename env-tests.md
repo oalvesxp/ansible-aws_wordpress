@@ -410,3 +410,29 @@ PLAY RECAP *********************************************************************
 mysql                      : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 webapp                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
 ```
+
+18. Teste da task de edição do wp-config.php
+```
+$ ansible-playbook playbook-configstart-wp.yml -t config-wp -i inventory.ini -uadmin
+
+PLAY [prod] **************************************************************************************************************************************************
+
+PLAY [wordpress] *********************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************
+ok: [webapp]
+
+TASK [wordpress : Update WordPress config file] **************************************************************************************************************
+changed: [webapp] => (item={'regex': 'database_name_here', 'value': 'staging_wp'})
+changed: [webapp] => (item={'regex': 'username_here', 'value': 'staging_user'})
+changed: [webapp] => (item={'regex': 'password_here', 'value': 'abcd1234'})
+
+PLAY [database] **********************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************
+ok: [mysql]
+
+PLAY RECAP ***************************************************************************************************************************************************
+mysql                      : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+webapp                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+```
