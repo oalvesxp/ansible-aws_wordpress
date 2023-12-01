@@ -15,3 +15,9 @@
     become: yes
     tags:
       - unzip-wp
+  
+  - name: "Copiando o arquivo template do config.php"
+    command: mv {{ website_root}}/wp-config-sample.php {{ website_root }}/wp-config.php creates={{ website_root }}/wp-config.php
+    become: yes
+    tags:
+      - copy-php-config
