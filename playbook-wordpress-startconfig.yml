@@ -9,3 +9,16 @@
         with_items:
           - mariadb-server
           - python3-mysqldb
+          
+  - hosts: wordpress
+    tasks:
+      - name: "Instalando o PHP"
+        apt: 
+          name: "{{ item }}"
+          state: latest
+        become: yes
+        with_items:
+          - php8.2
+          - php8.2-gd
+          - php8.2-mcrypt
+          - php8.2-mysql
