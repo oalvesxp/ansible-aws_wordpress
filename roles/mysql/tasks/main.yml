@@ -7,3 +7,9 @@
       - python3-mysqldb
     tags:
       - setup-mysql
+
+  - name: "Criando o Banco de Dados"
+    mysql_db: name={{ wp_mysql_db }} state=present
+    become: yes
+    tags:
+      - setup-db
