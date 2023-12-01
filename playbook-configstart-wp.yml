@@ -19,3 +19,7 @@
     roles:
       - server
       - php
+  
+  - hosts: database
+    roles:
+      - mysql
