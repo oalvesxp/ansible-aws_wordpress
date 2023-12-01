@@ -274,3 +274,25 @@ PLAY RECAP *********************************************************************
 mysql                      : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 webapp                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
+
+12. Testando o usuário criado: 
+```
+admin@ip-172-31-37-215:~$ sudo mysql -ustaging_user -p 
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 34
+Server version: 10.11.4-MariaDB-1~deb12u1 Debian 12
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| staging_wp         |
++--------------------+
+2 rows in set (0.000 sec)
+```
