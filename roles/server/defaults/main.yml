@@ -1,2 +1,2 @@
 ---
-# defaults file for server
+  website_root: /var/www/wordpress
