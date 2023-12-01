@@ -4,7 +4,7 @@ Documentação dos testes realizados durante o desenvolvimento.
 ### Documentação
 ---
 
-Verificação do arquivo host:
+1. Verificação do arquivo host:
 ```
 $ ansible-inventory --list
 {
@@ -46,7 +46,7 @@ $ ansible-inventory --list
 
 ```
 
-Verificação da conexão ansible <--> hosts:
+2. Verificação da conexão ansible <--> hosts:
 ```
 $ ansible prod -m ping -uadmin 
 mysql | SUCCESS => {
@@ -65,7 +65,7 @@ webapp | SUCCESS => {
 }
 ```
 
-Teste de instalação das dependencias do Banco de Dados:
+3. Teste de instalação das dependencias do Banco de Dados:
 ```
 $ ansible-playbook playbook-wordpress-startconfig.yml -i inventory.ini -uadmin -C
 
@@ -80,4 +80,52 @@ changed: [mysql] => (item=python3-mysqldb)
 
 PLAY RECAP **********************************************************************************************************************************
 mysql                      : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+4. Teste de instalação do php8.2 nos hosts wordpress:
+```
+$ ansible-playbook playbook-wordpress-startconfig.yml -t php -i inventory.ini -uadmin -C
+
+PLAY [database] *****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [mysql]
+
+PLAY [wordpress] ****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [webapp]
+
+TASK [Instalando o PHP] *********************************************************************************************************************
+changed: [webapp] => (item=php8.2)
+changed: [webapp] => (item=php8.2-gd)
+changed: [webapp] => (item=php8.2-mcrypt)
+changed: [webapp] => (item=php8.2-mysql)
+
+PLAY RECAP **********************************************************************************************************************************
+mysql                      : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+webapp                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+5. Teste de instalação do apache2 nos hosts wordpress:
+```
+$ ansible-playbook playbook-wordpress-startconfig.yml -t apache -i inventory.ini -uadmin -C
+
+PLAY [database] *****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [mysql]
+
+PLAY [wordpress] ****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [webapp]
+
+TASK [Instalando o Apache] ******************************************************************************************************************
+changed: [webapp] => (item=apache2)
+changed: [webapp] => (item=libapache2-mod-php8.2)
+
+PLAY RECAP **********************************************************************************************************************************
+mysql                      : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+webapp                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
