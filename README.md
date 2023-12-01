@@ -27,7 +27,7 @@ Vamos usar o Ansible para implementar automaticamente as configurações necess�
 1. SO da Instância:
 ```
 $ hostnamectl | grep -i "operating system"
-Operating System: Debian GNU/Linux 10 (buster)
+Operating System: Debian GNU/Linux 12 (bookworm)
 ```
 
 2. Versão do Ansible:
