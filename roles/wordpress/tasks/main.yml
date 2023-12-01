@@ -6,3 +6,12 @@
       validate_certs=no
     tags:
       - get-wp
+  
+  - name: "Extraindo os arquivos..."
+    unarchive:
+      src=/tmp/latest.tar.gz
+      dest=/var/www/
+      copy=no
+    become: yes
+    tags:
+      - unzip-wp
