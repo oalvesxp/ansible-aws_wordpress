@@ -8,7 +8,7 @@
       - name: "Atualizando o apt-cache"
         apt: update_cache=yes cache_valid_time=3600
         become: yes
-        
+
       - name: "Instalando o Python3"
         command: apt install python3
         become: yes
@@ -18,3 +18,4 @@
   - hosts: wordpress
     roles:
       - server
+      - php
