@@ -4,4 +4,7 @@
 ### Ansible ###
 *.retry
 
+### Access Keys ###
+*.pem
+
 # End of https://www.toptal.com/developers/gitignore/api/ansible
