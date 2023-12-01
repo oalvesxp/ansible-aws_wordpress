@@ -197,3 +197,28 @@ changed: [webapp] => (item=php8.2-mysql)
 PLAY RECAP **********************************************************************************************************************************
 webapp                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
 ```
+
+9. Teste de instalação das dependências do MySQL:
+```
+$ ansible-playbook playbook-configstart-wp.yml -t setup-mysql -i inventory.ini -uadmin -C
+
+PLAY [prod] *********************************************************************************************************************************
+
+PLAY [wordpress] ****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [webapp]
+
+PLAY [database] *****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [mysql]
+
+TASK [mysql : Instalando as dependências do MySQL] ******************************************************************************************
+changed: [mysql] => (item=mariadb-server)
+changed: [mysql] => (item=python3-mysqldb)
+
+PLAY RECAP **********************************************************************************************************************************
+mysql                      : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+webapp                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
