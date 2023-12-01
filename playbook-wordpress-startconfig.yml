@@ -26,3 +26,14 @@
           - php8.2-mysql
         tags:
           - php
+      
+      - name: "Instalando o Apache"
+        apt:
+          name: "{{ item }}"
+          state: latest
+        become: yes
+        with_items:
+          - apache2
+          - libapache2-mod-php8.2
+        tags:
+          - apache
