@@ -326,3 +326,39 @@ webapp                     : ok=2    changed=1    unreachable=0    failed=0    s
 admin@ip-172-31-37-215:~$ ls -l /tmp/latest.tar.gz 
 -rw-r--r-- 1 admin admin 24479162 Dec  1 18:25 /tmp/latest.tar.gz
 ```
+
+15. Teste da estrutura ansible atá aqui:
+```
+PLAY RECAP ***************************************************************************************************************************************************
+mysql                      : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+webapp                     : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+```
+
+Arquivos do WordPress:
+```
+admin@ip-172-31-37-215:~$ ls -l /var/www/
+total 8
+drwxr-xr-x 2 root   root    4096 Dec  1 18:40 html
+drwxr-xr-x 5 nobody nogroup 4096 Nov  9 00:45 wordpress
+admin@ip-172-31-37-215:~$ ls -l /var/www/wordpress/
+total 228
+-rw-r--r--  1 nobody nogroup   405 Feb  6  2020 index.php
+-rw-r--r--  1 nobody nogroup 19915 Jan  1  2023 license.txt
+-rw-r--r--  1 nobody nogroup  7399 Jul  5 17:41 readme.html
+-rw-r--r--  1 nobody nogroup  7211 May 12  2023 wp-activate.php
+drwxr-xr-x  9 nobody nogroup  4096 Nov  9 00:45 wp-admin
+-rw-r--r--  1 nobody nogroup   351 Feb  6  2020 wp-blog-header.php
+-rw-r--r--  1 nobody nogroup  2323 Jun 14 14:11 wp-comments-post.php
+-rw-r--r--  1 nobody nogroup  3013 Feb 23  2023 wp-config-sample.php
+drwxr-xr-x  4 nobody nogroup  4096 Nov  9 00:45 wp-content
+-rw-r--r--  1 nobody nogroup  5638 May 30  2023 wp-cron.php
+drwxr-xr-x 27 nobody nogroup 12288 Nov  9 00:45 wp-includes
+-rw-r--r--  1 nobody nogroup  2502 Nov 26  2022 wp-links-opml.php
+-rw-r--r--  1 nobody nogroup  3927 Jul 16 12:16 wp-load.php
+-rw-r--r--  1 nobody nogroup 50924 Sep 29 22:01 wp-login.php
+-rw-r--r--  1 nobody nogroup  8525 Sep 16 06:50 wp-mail.php
+-rw-r--r--  1 nobody nogroup 26409 Oct 10 14:05 wp-settings.php
+-rw-r--r--  1 nobody nogroup 34385 Jun 19 18:27 wp-signup.php
+-rw-r--r--  1 nobody nogroup  4885 Jun 22 14:36 wp-trackback.php
+-rw-r--r--  1 nobody nogroup  3154 Sep 30 07:39 xmlrpc.php
+```
