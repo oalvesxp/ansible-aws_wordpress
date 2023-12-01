@@ -5,5 +5,7 @@
       regexp="(.)DocumentRoot /var/www/html"
       line="\tDocumentRoot {{ website_root }}"
     become: yes
+    notify:
+      - restart apache
     tags:
       - vhost
