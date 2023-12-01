@@ -176,3 +176,24 @@ PLAY RECAP *********************************************************************
 mysql                      : ok=1    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 webapp                     : ok=3    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
+
+8. Testando as tasks de instalação do php8.2:
+```
+$ ansible-playbook playbook-configstart-wp.yml -t install-php -i inventory.ini -uadmin -C
+
+PLAY [prod] *********************************************************************************************************************************
+
+PLAY [wordpress] ****************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************
+ok: [webapp]
+
+TASK [php : Instalando as dependências do php.8.2] ******************************************************************************************
+changed: [webapp] => (item=php8.2)
+changed: [webapp] => (item=php8.2-gd)
+changed: [webapp] => (item=php8.2-mcrypt)
+changed: [webapp] => (item=php8.2-mysql)
+
+PLAY RECAP **********************************************************************************************************************************
+webapp                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+```
