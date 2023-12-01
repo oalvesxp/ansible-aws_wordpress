@@ -13,3 +13,12 @@
     become: yes
     tags:
       - setup-db
+  
+  - name: "Criando o usuário do MySQL"
+    mysql_user:
+      name={{ wp_mysql_user }}
+      password={{ wp_mysql_passwd }}
+      priv={{ wp_mysql_db }}.*:ALL
+    become: yes
+    tags:
+      - setup-dbuser
