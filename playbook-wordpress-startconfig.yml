@@ -9,7 +9,9 @@
         with_items:
           - mariadb-server
           - python3-mysqldb
-          
+        tags:
+          - mysql
+
   - hosts: wordpress
     tasks:
       - name: "Instalando o PHP"
@@ -22,3 +24,5 @@
           - php8.2-gd
           - php8.2-mcrypt
           - php8.2-mysql
+        tags:
+          - php
