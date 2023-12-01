@@ -129,3 +129,22 @@ PLAY RECAP *********************************************************************
 mysql                      : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 webapp                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
+
+---
+
+Agora comecei a criar uma estrutura mais segmentada do ansible para organizar todas as roles e tasks.
+
+6. Testando o novo playbook-configstart-wp
+```
+$ ansible-playbook playbook-configstart-wp.yml -i inventory.ini -uadmin -C
+
+PLAY [prod] *********************************************************************************************************************************
+
+TASK [Instalando o Python3] *****************************************************************************************************************
+skipping: [mysql]
+skipping: [webapp]
+
+PLAY RECAP **********************************************************************************************************************************
+mysql                      : ok=0    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+webapp                     : ok=0    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+```
