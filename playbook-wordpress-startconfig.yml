@@ -1,0 +1,39 @@
+---
+  - hosts: database
+    tasks:
+      - name: "Instalando o MySQL"
+        apt:
+          name: "{{ item }}"
+          state: latest
+        become: yes
+        with_items:
+          - mariadb-server
+          - python3-mysqldb
+        tags:
+          - mysql
+
+  - hosts: wordpress
+    tasks:
+      - name: "Instalando o PHP"
+        apt: 
+          name: "{{ item }}"
+          state: latest
+        become: yes
+        with_items:
+          - php8.2
+          - php8.2-gd
+          - php8.2-mcrypt
+          - php8.2-mysql
+        tags:
+          - php
+      
+      - name: "Instalando o Apache"
+        apt:
+          name: "{{ item }}"
+          state: latest
+        become: yes
+        with_items:
+          - apache2
+          - libapache2-mod-php8.2
+        tags:
+          - apache

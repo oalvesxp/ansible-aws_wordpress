@@ -1,0 +1,11 @@
+---
+  - name: "Instalando as dependências do php.8.2"
+    apt: name={{ item }}  state=present
+    become: yes
+    with_items:
+      - php8.2
+      - php8.2-gd
+      - php8.2-mcrypt
+      - php8.2-mysql
+    tags:
+      - setup-php

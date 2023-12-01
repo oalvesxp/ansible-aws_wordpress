@@ -1,0 +1,23 @@
+---    
+  - name: "Atualizando o apt-cache"
+    apt: update_cache=yes cache_valid_time=3600
+    become: yes
+    tags:
+      - update-apt
+
+  - name: "Instalando o Python3"
+    command: apt install python3
+    become: yes
+    vars:
+      ansible_python_interpreter: /usr/bin/python3
+    tags:
+      - setup-py
+
+  - name: "Instalando o servidor Web"
+    apt: name={{ item }} state=present
+    become: yes
+    with_items:
+      - apache2
+      - libapache2-mod-php8.2
+    tags:
+      - setup-server

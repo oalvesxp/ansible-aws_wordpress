@@ -1,0 +1,11 @@
+---
+  - name: "Atualizando o vHost"
+    lineinfile:
+      dest=/etc/apache2/sites-enabled/000-default.conf
+      regexp="(.)DocumentRoot /var/www/html"
+      line="\tDocumentRoot {{ website_root }}"
+    become: yes
+    notify:
+      - restart apache
+    tags:
+      - vhost
