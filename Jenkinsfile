@@ -4,7 +4,14 @@ pipeline {
     stages {
         stage ('Inicio') {
             steps {
-                echo 'Iniciando a Pipeline'
+                echo "Iniciando a Pipeline - Wordpress Setup"
+            }
+        }
+        stage ('Teste de conexão') {
+            steps {
+                echo "Testando a conexão dos servidores..."
+                cd ~/ansible/c-wordpress
+                ansible -m ping all --vault-password-file ./files/.vault.txt
             }
         }
     }
