@@ -20,9 +20,11 @@ pipeline {
             }
         }
 
-        stage ('Setup webserver') {
+        stage ('Setup all env') {
             steps {
                 ansiblePlaybook become: true, credentialsId: 'ansible.pem', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/c-wordpress/inventory_hml_wordpress', playbook: '/etc/ansible/c-wordpress/playbook-all-apache2.yml', vaultCredentialsId: 'ansible-vault', vaultTmpPath: ''
+                ansiblePlaybook become: true, credentialsId: 'ansible.pem', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/c-wordpress/inventory_hml_wordpress', playbook: '/etc/ansible/c-wordpress/playbook-all-php8.2-wp.yml', vaultCredentialsId: 'ansible-vault', vaultTmpPath: ''
+                ansiblePlaybook become: true, credentialsId: 'ansible.pem', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/c-wordpress/inventory_hml_wordpress', playbook: '/etc/ansible/c-wordpress/playbook-all-mariadb-setup.yml', vaultCredentialsId: 'ansible-vault', vaultTmpPath: ''
             }
         }
     }
