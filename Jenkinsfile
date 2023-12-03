@@ -2,14 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage ('Inicio') {
+        stage ('Start') {
             steps {
-                echo "Iniciando a Pipeline - Wordpress Setup"
+                echo "Starting pipeline..."
             }
         }
-        stage ('Teste de conexão') {
+
+        satage ('Conection check') {
             steps {
-                echo "Testando a conexão dos servidores..."
+                ansiblePlaybook become: true, credentialsId: 'ansible.pem', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/c-wordpress/inventory_hml_wordpress', playbook: '/etc/ansible/c-wordpress/playbook-all-ping.yml', vaultCredentialsId: 'ansible-vault', vaultTmpPath: ''
+            }
+        }
+
+        stage ('Setup common') {
+            steps {
                 ansiblePlaybook become: true, credentialsId: 'ansible.pem', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/c-wordpress/inventory_hml_wordpress', playbook: '/etc/ansible/c-wordpress/playbook-all-common.yml', vaultCredentialsId: 'ansible-vault', vaultTmpPath: ''
             }
         }
