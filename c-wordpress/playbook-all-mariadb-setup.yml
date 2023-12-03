@@ -1,0 +1,6 @@
+---
+  - hosts: db
+    gather_facts: False
+
+    roles:
+      - mariadb-10.5-setup

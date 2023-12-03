@@ -1,0 +1,17 @@
+---
+  - name: "Instalando o Apache2"
+    apt: name={{ item }} state=present
+    become: yes
+    loop:
+      - apache2
+      - libapache2-mod-php8.2
+
+  - name: "Atualizando o vhost"
+    template: 
+      src: 000-default.conf.j2
+      dest: /etc/apache2/sites-available/000-default.conf
+      owner: root
+      group: root
+    become: yes
+    notify:
+      - restart apache

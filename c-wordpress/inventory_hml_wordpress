@@ -1,0 +1,19 @@
+## Hosts ##
+web01   ansible_host="{{ host_ip }}"   hostname=wp-h-web01
+app01   ansible_host="{{ host_ip }}"   hostname=wp-h-app01
+db01    ansible_host="{{ host_ip }}"   hostname=wp-h-db01
+
+## Grupos ##
+[web]
+web01
+
+[app]
+app01
+
+[db]
+db01
+
+[hml_wordpress:children]
+web
+app
+db

@@ -1,0 +1,6 @@
+---
+  - hosts: web
+    gather_facts: False
+    
+    roles:
+      - apache2-setup

@@ -1,0 +1,19 @@
+---
+  - name: "Instalando o MariaDB"
+    apt: name={{ item }} state=present
+    become: yes
+    loop:
+      - mariadb-server-{{ version }}
+      - python3-mysqldb
+
+  - name: "Criando o banco de dados"
+    mysql_db: name={{ db_name }} state=present
+    become: yes
+  
+  - name: "Criando o usuário do banco"
+    mysql_user:
+      name={{ db_user }}
+      password={{ db_passwd }}
+      priv={{ db_name }}.*:ALL
+    become: yes
+    

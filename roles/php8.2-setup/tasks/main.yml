@@ -1,0 +1,11 @@
+---
+  - name: "Instalando o php8.2"
+    apt: name={{ item }} state=present
+    become: yes
+    loop:
+      - php{{ version }}
+      - php{{ version }}-gd
+      - php{{ version }}-mcrypt
+      - php{{ version }}-mysql
+    tags:
+      - install-php
