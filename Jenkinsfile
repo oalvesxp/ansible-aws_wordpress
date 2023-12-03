@@ -19,5 +19,11 @@ pipeline {
                 ansiblePlaybook become: true, credentialsId: 'ansible.pem', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/c-wordpress/inventory_hml_wordpress', playbook: '/etc/ansible/c-wordpress/playbook-all-common.yml', vaultCredentialsId: 'ansible-vault', vaultTmpPath: ''
             }
         }
+
+        stage ('Setup webserver') {
+            steps {
+                ansiblePlaybook become: true, credentialsId: 'ansible.pem', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/c-wordpress/inventory_hml_wordpress', playbook: '/etc/ansible/c-wordpress/playbook-all-apache2.yml', vaultCredentialsId: 'ansible-vault', vaultTmpPath: ''
+            }
+        }
     }
 }
