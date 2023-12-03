@@ -1,0 +1,25 @@
+---
+  - name: "Baixando o WordPress"
+    get_url:
+      url: https://wordpress.org/latest.tar.gz
+      dest: /tmp/latest.tar.gz
+      validate_certs: no
+    
+  - name: "Extraindo arquivos"
+    unarchive:
+      src: /tmp/latest.tar.gz
+      dest: /var/www/
+      copy: no
+      owner: root
+      group: root
+    become: yes
+
+  - name: "Configurando o wp-config.php"
+    template:
+      src: wp-config.php.j2
+      dest: "{{ root_dir }}/wp-config.php"
+      owner: root
+      group: root
+    become: yes
+    notify:
+      - reload apache

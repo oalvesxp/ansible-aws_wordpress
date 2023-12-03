@@ -1,0 +1,9 @@
+## Project ##
+env_name: wordpress
+
+## Apache ##
+root_dir: "/var/www/{{ env_name }}"
+
+## Database ##
+db_name: wp_hml
+db_user: wp_usr

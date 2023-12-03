@@ -1,0 +1,9 @@
+## Project ##
+env_name: project-name
+
+## Apache ##
+root_dir: "/var/www/{{ env_name }}"
+
+## Database ##
+db_name: name
+db_user: user

@@ -3,6 +3,7 @@
 
 ### Ansible ###
 *.retry
+*.cfg
 
 ### Access Keys ###
 *.pem

@@ -1,0 +1,14 @@
+---
+  - hosts: web
+    gather_facts: no
+    
+    tasks: 
+      - name: "Executando uma requisição HTTP"
+        uri:
+          url: "http://{{ ansible_host }}/wp-admin/install.php"
+          return_content: yes
+        register: response
+        failed_when: "'<h1>Welcome</h1>' not in response.content"
+        retries: 3
+        delay: 3
+        until: response.status == 200

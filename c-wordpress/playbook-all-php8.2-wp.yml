@@ -1,0 +1,6 @@
+---
+  - hosts: app
+    gather_facts: False
+    
+    roles:
+      - php8.2-setup

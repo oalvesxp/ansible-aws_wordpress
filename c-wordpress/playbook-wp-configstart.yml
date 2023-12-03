@@ -1,0 +1,7 @@
+---
+  - import_playbook: playbook-all-common.yml
+  - import_playbook: playbook-all-apache2.yml
+  - import_playbook: playbook-all-php8.2-wp.yml
+  - import_playbook: playbook-all-mariadb-setup.yml
+  - import_playbook: playbook-all-wp-setup.yml
+  - import_playbook: playbook-all-check.yml
