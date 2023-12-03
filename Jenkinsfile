@@ -10,8 +10,10 @@ pipeline {
         stage ('Teste de conexão') {
             steps {
                 echo "Testando a conexão dos servidores..."
-                cd ~/ansible/c-wordpress
-                ansible -m ping all --vault-password-file ./files/.vault.txt
+                script {
+                    cd ~/ansible/c-wordpress
+                    ansible -m ping all --vault-password-file ./files/.vault.txt
+                }
             }
         }
     }
