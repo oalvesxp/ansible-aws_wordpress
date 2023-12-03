@@ -4,22 +4,18 @@ Provisionando um ambiente simples para wordpress na AWS.
 ### Descrição do Projeto
 ---
 
-O objetivo principal é implementar uma instância que atenda as demandas de um projeto wordpress. Para este cenário vou utilizar o worpdress na sua última versão que depende de um php7.0 no mínimo (se for replicar isso em um futuro distante, fique atento as dependencias do wordpress na versão utilizada).</br>
-Vamos usar o Ansible para implementar automaticamente as configurações necessárias para que o WordPress possa ser instalado e configurado.
+O objetivo é configurar um ambiente para wordpress com ansible de maneira segura e com código reutilizável.
 
 ###  Projeto
 ---
 
-* Instalar o Ansible e criar a conta na AWS;
-* Criar a instância EC2;
-* Criar e configurar o arquivo de inventory (hosts);
-* Testar a comunicação ansible <--> host;
-* Criar a árvore de diretórios para organizar as roles do Ansible (mysql, php, server e wordpress);
-* Criar os arquivos necessários para cada roles;
-* Criar o playbook de configstart.yml para aplicar cada role;
-* Testar o playbook configstart.yml e depurar os erros;
-* Aplicar o playbook no ambiente;
-* Testar o ambiente.
+* Configuração do ansible (ansible.cfg)
+* Criação das roles.
+  * **apache2-setup:** Instalação e configuração do apache2 no servidor web.
+  * **mariadb-10.5-setup:** Instalação e configuração do mariadb-10.5 no servidor de banco.
+  * **php8.2-setup:** Instalação e configuração do php8.2 no servidor de aplicação.
+  * **wordpress-setup:** Instalação e configuração do wordpress no servidor de aplicação / web.
+* Criação dos playbooks de execução.
 
 ### Softwares & versões
 ---
