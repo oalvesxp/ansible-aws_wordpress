@@ -1,0 +1,58 @@
+---
+  - hosts: devops
+    gather_facts: True
+    become: yes
+
+    handlers:
+      - name: apt update
+        apt:  update_cache=yes cache_valid_time=3600
+        become: yes
+    
+    tasks:
+      - name: "Instalando o Python3"
+        command: apt install python3
+        become: yes
+        vars:
+          ansible_python_interpreter: /usr/bin/python3
+        tags:
+          - python
+        notify:
+          - apt update
+      
+      - name: "Adicionando repo | apt key"
+        get_url:
+          url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+          dest: /usr/share/keyrings/jenkins-keyring.asc
+        tags:
+          - key
+
+      - name: "Adicionando repo | apt source"
+        apt_repository:
+          repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/"
+          state: present
+        tags:
+          - source
+        notify:
+          - apt update
+
+      - name: "Instalação do Jenkins"
+        apt: name={{ item }} state=present
+        become: yes
+        loop:
+          - fontconfig
+          - openjdk-17-jre
+          - jenkins
+        tags:
+          - install
+      
+      - name: "Check HTTP"
+        uri:
+          url: "http://{{ ansible_host }}:8080/login?from=%2F"
+          return_content: yes
+        register: response
+        failed_when: "'<h1>Unlock Jenkins</h1>' not in response.content"
+        retries: 3
+        delay: 3
+        until: response.status == 200
+        tags:
+          - check
