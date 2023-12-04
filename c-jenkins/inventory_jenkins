@@ -1,0 +1,9 @@
+## Hosts ##
+devops01   ansible_host="{{ host_ip }}"   hostname=jenkins-h-devops01
+
+## Grupos ##
+[devops]
+devops01
+
+[hml_jenkins:children]
+devops

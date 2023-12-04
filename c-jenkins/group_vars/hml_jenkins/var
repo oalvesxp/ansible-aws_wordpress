@@ -1,0 +1,5 @@
+## Project ##
+env_name: jenkins
+
+## Java JDK ##
+version: 17
